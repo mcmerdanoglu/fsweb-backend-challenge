@@ -8,7 +8,8 @@
     "server": "nodemon index.js",
     "rollback": "knex migrate:rollback",
     "migrate": "knex migrate:latest",
-    "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --silent"
+    "seed": "knex seed:run",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
     "knex": "^2.4.2",
+    "morgan": "^1.10.0",
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {
