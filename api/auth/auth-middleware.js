@@ -1,4 +1,4 @@
-const userModel = require("../users/users-model");
+const usersModel = require("../users/users-model");
 const bcryptjs = require("bcryptjs");
 
 const checkUserPayload = (req, res, next) => {
@@ -28,7 +28,7 @@ const checkUserPayload = (req, res, next) => {
 
 async function checkUser(req, res, next) {
   try {
-    let isExistingUser = await userModel.getUserByUsername(req.body.username);
+    let isExistingUser = await usersModel.getUserByUsername(req.body.username);
     if (!isExistingUser) {
       res.status(404).json({ message: "geçersiz kriterler" });
     } else {

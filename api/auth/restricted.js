@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
       jwt.verify(authHeader, JWT_SECRET, async (err, decodedToken) => {
         if (err) {
           await res.status(401).json({
-            message: "token geçersizdir",
+            message: "Token geçersizdir",
           }); /* 3- Authorization headerında geçersiz veya timeout olmuş token varsa, response body şu mesajı içermelidir: "token geçersizdir".*/
         } else {
           req.decodedToken =

@@ -1,12 +1,12 @@
 //const express = require("express");
 //const router = express.Router();
 const router = require("express").Router();
-const userModel = require("./users-model");
+const usersModel = require("./users-model");
 const restrict = require("../auth/restricted");
 
 router.get("/", async (req, res) => {
   try {
-    const users = await userModel.getAllUsers();
+    const users = await usersModel.getAllUsers();
     res.json(users);
   } catch (error) {
     res
@@ -19,7 +19,7 @@ router.get("/:id", async (req, res) => {
   const userId = req.params.id;
 
   try {
-    const user = await userModel.getUserById(userId);
+    const user = await usersModel.getUserById(userId);
     if (user) {
       res.json(user);
     } else {
@@ -36,7 +36,7 @@ router.delete("/:id", restrict, async (req, res) => {
   const userId = req.params.id;
 
   try {
-    const deletedUser = await userModel.deleteUser(userId);
+    const deletedUser = await usersModel.deleteUser(userId);
     if (deletedUser) {
       res.json({ message: "Kullanıcı başarıyla silindi." });
     } else {
@@ -53,10 +53,10 @@ router.put("/:id", restrict, async (req, res) => {
   const user = { username, password, email };
 
   try {
-    const updatedUser = await userModel.updateUser(userId, user);
+    const updatedUser = await usersModel.updateUser(userId, user);
     if (updatedUser) {
-      const newUpdatedUser = await userModel.getUserById(userId);
-      res.json(newUpdatedUser);
+      const newUpdatedUser = await usersModel.getUserById(userId);
+      res.status(200).json(newUpdatedUser);
     } else {
       res.status(404).json({ message: "Kullanıcı bulunamadı." });
     }

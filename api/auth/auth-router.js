@@ -3,7 +3,7 @@ const { checkUserPayload, checkUser } = require("./auth-middleware");
 const { JWT_SECRET } = require("../secrets/secret");
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
-const userModel = require("../users/users-model");
+const usersModel = require("../users/users-model");
 
 router.post("/register", checkUserPayload, async (req, res, next) => {
   try {
@@ -13,7 +13,7 @@ router.post("/register", checkUserPayload, async (req, res, next) => {
       password: hashedPassword,
       email: req.body.email,
     };
-    const registeredUser = await userModel.addUser(userRequestModel);
+    const registeredUser = await usersModel.addUser(userRequestModel);
     res.status(201).json(registeredUser);
   } catch (error) {
     next(error);
@@ -23,7 +23,7 @@ router.post("/register", checkUserPayload, async (req, res, next) => {
 router.post("/login", checkUserPayload, checkUser, (req, res, next) => {
   try {
     let payload = {
-      id: req.currentUser.id,
+      user_id: req.currentUser.user_id,
       username: req.currentUser.username,
       email: req.currentUser.email,
       // Bu bölümde kesinlikle password gönderilmeyecek!!!
