@@ -1,5 +1,3 @@
-//const express = require("express");
-//const router = express.Router();
 const router = require("express").Router();
 const usersModel = require("./users-model");
 const restrict = require("../auth/restricted");

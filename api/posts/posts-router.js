@@ -1,5 +1,3 @@
-// const express = require("express");
-// const router = express.Router();
 const router = require("express").Router();
 const postsModel = require("./posts-model");
 const restrict = require("../auth/restricted");
@@ -9,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const posts = await postsModel.getAllPosts();
     const sortedPosts = posts
-      .sort((a, b) => b.created_at - a.created_at)
+      .sort((a, b) => b.post_time - a.post_time)
       .reverse();
     res.json(sortedPosts);
   } catch (error) {
