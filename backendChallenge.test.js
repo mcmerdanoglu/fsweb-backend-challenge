@@ -74,14 +74,14 @@ describe("POST Auth", () => {
       .post("/api/auth/login")
       .send(userLoginData);
     // Assert
-    expect(actual.status).toBe(401);
+    expect(actual.status).toBe(400);
   });
 
   test("[5] Auth/Login- Kullanıcı girişi başarılı ise kullanıcıya erişilerek token bilgisi dönüyor mu?", async () => {
     //act
     var loginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
     /// Act
@@ -93,7 +93,7 @@ describe("POST Auth", () => {
     // Assert
     expect(response.status).toBe(200);
     expect(response.body.length).toBeGreaterThan(0);
-    expect(response.body.token).toBeDefined();
+    expect(actual.body.token).toBeDefined();
   });
 });
 
@@ -104,7 +104,7 @@ describe("USERS endpointi PUT ve DELETE method testleri", () => {
   test("[6]  Kayıtlı kullanıcı bilgileri güncellenebiliyor mu?", async () => {
     const loginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
 
@@ -120,9 +120,8 @@ describe("USERS endpointi PUT ve DELETE method testleri", () => {
     };
     const response = await request(server)
       .post("/api/auth/register")
-      .send(user)
-      .set("authorization", token);
-    const userId = response.body.id;
+      .send(user);
+    const userId = response.body.user_id;
 
     const updatingResult = await request(server)
       .put(`/api/users/${userId}`)
@@ -140,7 +139,7 @@ describe("USERS endpointi PUT ve DELETE method testleri", () => {
   test("[7] Kayıtlı kullanıcı silinebiliyor mu?", async () => {
     const loginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
 
@@ -159,7 +158,7 @@ describe("USERS endpointi PUT ve DELETE method testleri", () => {
       .post("/api/auth/register")
       .send(user)
       .set("authorization", token);
-    const userId = response.body.id;
+    const userId = response.body.user_id;
 
     const deletionResult = await request(server)
       .delete(`/api/users/${userId}`)
@@ -178,7 +177,7 @@ describe("POSTS endpointi POST, PUT ve DELETE method testleri", () => {
 
     const userLoginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
     const loginResponse = await request(server)
@@ -197,7 +196,7 @@ describe("POSTS endpointi POST, PUT ve DELETE method testleri", () => {
   test("[9]  Kayıtlı gönderi güncellenebiliyor mu?", async () => {
     const loginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
 
@@ -213,7 +212,7 @@ describe("POSTS endpointi POST, PUT ve DELETE method testleri", () => {
       .post("/api/posts")
       .send(post)
       .set("authorization", token);
-    const postId = response.body.id;
+    const postId = response.body.user_id;
 
     const updatingResult = await request(server)
       .put(`/api/posts/${postId}`)
@@ -226,7 +225,7 @@ describe("POSTS endpointi POST, PUT ve DELETE method testleri", () => {
   test("[10] Kayıtlı gönderi silinebiliyor mu?", async () => {
     const loginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
 
@@ -242,7 +241,7 @@ describe("POSTS endpointi POST, PUT ve DELETE method testleri", () => {
       .post("/api/posts")
       .send(post)
       .set("authorization", token);
-    const postId = response.body.id;
+    const postId = response.body.post_id;
 
     const deletionResult = await request(server)
       .delete(`/api/posts/${postId}`)
@@ -262,7 +261,7 @@ describe("COMMENTS endpointi POST, PUT ve DELETE method testleri", () => {
 
     const loginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
     const loginResponse = await request(server)
@@ -281,7 +280,7 @@ describe("COMMENTS endpointi POST, PUT ve DELETE method testleri", () => {
   test("[12] Kayıtlı yorum güncellenebiliyor mu?", async () => {
     const loginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
 
@@ -298,7 +297,7 @@ describe("COMMENTS endpointi POST, PUT ve DELETE method testleri", () => {
       .post("/api/comments")
       .send(comment)
       .set("authorization", token);
-    const commentId = response.body.id;
+    const commentId = response.body.user_id;
 
     const updatingResult = await request(server)
       .put(`/api/comments/${commentId}`)
@@ -308,10 +307,10 @@ describe("COMMENTS endpointi POST, PUT ve DELETE method testleri", () => {
     expect(updatingResult.status).toBe(200);
   });
   /////DELETE A COMMENT////
-  test("[9] Kayıtlı yorum silinebiliyor mu?", async () => {
+  test("[13] Kayıtlı yorum silinebiliyor mu?", async () => {
     const loginModel = {
       username: "cem",
-      password: "1111",
+      password: "1234",
       email: "cem@workintech.com",
     };
 
@@ -328,7 +327,7 @@ describe("COMMENTS endpointi POST, PUT ve DELETE method testleri", () => {
       .post("/api/comments")
       .send(comment)
       .set("authorization", token);
-    const commentId = response.body.id;
+    const commentId = response.body.user_id;
 
     const deletionResult = await request(server)
       .delete(`/api/comments/${commentId}`)

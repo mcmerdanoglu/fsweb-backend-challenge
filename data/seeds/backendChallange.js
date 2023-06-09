@@ -12,19 +12,19 @@ exports.seed = async function (knex) {
     {
       user_id: 1,
       username: "cem",
-      password: "1111",
+      password: "$2a$10$gacTeQRr8H4HTa6mmeI4NO.PyKrLtn1h4/u7w91SY0ZD91g9T2o5W",
       email: "cem@workintech.com",
     },
     {
       user_id: 2,
       username: "ali",
-      password: "2222",
+      password: "$2a$10$gacTeQRr8H4HTa6mmeI4NO.PyKrLtn1h4/u7w91SY0ZD91g9T2o5W",
       email: "ali@workintech.com",
     },
     {
       user_id: 3,
       username: "veli",
-      password: "3333",
+      password: "$2a$10$gacTeQRr8H4HTa6mmeI4NO.PyKrLtn1h4/u7w91SY0ZD91g9T2o5W",
       email: "veli@workintech.com",
     },
   ]);
