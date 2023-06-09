@@ -8,8 +8,6 @@ const authRouter = require("./auth/auth-router");
 const usersRouter = require("./users/users-router");
 const postsRouter = require("./posts/posts-router");
 const commentsRouter = require("./comments/comments-router");
-// Duruma göre
-// const postsCommentsRouter = require("./posts/posts-comments-router");
 
 const server = express();
 
@@ -27,7 +25,5 @@ server.use("/api/auth", authRouter);
 server.use("/api/users", usersRouter);
 server.use("/api/posts", restrict, postsRouter); // restrict middlewarei, ilgili endpointlere sadece auth ile giriş yapan kullanıcıların erişebilmesi için!
 server.use("/api/comments", restrict, commentsRouter); // restrict middlewarei, ilgili endpointlere sadece auth ile giriş yapan kullanıcıların erişebilmesi için!
-// Duruma göre
-//server.use("/api/posts-comments", postsCommentsRouter);
 
 module.exports = server;
