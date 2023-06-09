@@ -6,7 +6,7 @@
  */
 const sharedConfig = {
   client: "sqlite3",
-  useNullAsDefault: true,
+  //useNullAsDefault: true,
   migrations: { directory: "./data/migrations" },
   seeds: { directory: "./data/seeds" },
   pool: {
@@ -25,7 +25,7 @@ module.exports = {
   testing: {
     ...sharedConfig,
     connection: {
-      filename: "./data/testBackendChallenge.db3",
+      filename: "./data/testBC.db3",
     },
   },
 };
